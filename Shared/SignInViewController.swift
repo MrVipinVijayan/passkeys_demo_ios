@@ -8,12 +8,14 @@ The view where the user can sign in, or create an account.
 import AuthenticationServices
 import UIKit
 import os
+import LocalAuthentication
 
 class SignInViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var authsLabel: UILabel!
 
     private var signInObserver: NSObjectProtocol?
     private var signInErrorObserver: NSObjectProtocol?
@@ -65,8 +67,8 @@ class SignInViewController: UIViewController {
         
         self.view.endEditing(true)
 
-        guard let window = self.view.window else { fatalError("The view was not in the app's view hierarchy!") }
-        (UIApplication.shared.delegate as? AppDelegate)?.accountManager.signInWith(anchor: window, preferImmediatelyAvailableCredentials: true)
+//        guard let window = self.view.window else { fatalError("The view was not in the app's view hierarchy!") }
+//        (UIApplication.shared.delegate as? AppDelegate)?.accountManager.signInWith(anchor: window, preferImmediatelyAvailableCredentials: true)
     }
 
     func showSignInForm() {
@@ -87,5 +89,53 @@ class SignInViewController: UIViewController {
     @IBAction func tappedBackground(_ sender: Any) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func checkPlatformAuthenticators(_ sender: Any) {
+        let availableAuthenticators = getAvailableAuthenticators()
+        print(availableAuthenticators)
+        authsLabel.text = availableAuthenticators
+    }
+    
+    func getAvailableAuthenticators() -> String {
+        let context = LAContext()
+        var error: NSError?
+        var message = "Available Authenticators: "
+
+        // Check if the device supports biometric authentication
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // Determine the type of biometric authentication available
+            switch context.biometryType {
+            case .faceID:
+                message += "Face ID"
+            case .touchID:
+                message += "Touch ID"
+            case .opticID:
+                message += "Optic ID" // Add this if Optic ID is supported in future updates
+            case .none:
+                message += "None"
+            @unknown default:
+                message += "Unknown Biometric Type"
+            }
+        } else {
+            // Handle the case where biometrics are not available
+            if let error = error {
+                message += "Biometric authentication is not available (\(error.localizedDescription))"
+            } else {
+                message += "No biometric authentication available."
+            }
+        }
+
+        // Add additional authentication methods supported by the device
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            if message.contains("Face ID") || message.contains("Touch ID") || message.contains("Optic ID") {
+                message += ", Passcode"
+            } else {
+                message += "Passcode"
+            }
+        }
+
+        return message
+    }
+
 }
 

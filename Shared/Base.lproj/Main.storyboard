@@ -53,6 +53,14 @@
                                     <action selector="signInToAccount:" destination="JYA-dk-W0N" eventType="touchUpInside" id="YCt-fj-TA8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzJ-XS-NaJ">
+                                <rect key="frame" x="79" y="556" width="257" height="49"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Check Platform Authenticators"/>
+                                <connections>
+                                    <action selector="checkPlatformAuthenticators:" destination="JYA-dk-W0N" eventType="touchUpInside" id="fuh-mg-Ujg"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLU-cT-pW4">
                                 <rect key="frame" x="135.5" y="827" width="143" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -61,6 +69,12 @@
                                     <action selector="createAccount:" destination="JYA-dk-W0N" eventType="touchUpInside" id="fk7-qI-FOf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWj-qP-4SO">
+                                <rect key="frame" x="0.0" y="658" width="414" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2qF-bR-Q5f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,25 +83,31 @@
                             <constraint firstItem="gBg-7e-oYo" firstAttribute="centerX" secondItem="jjO-Vp-pfp" secondAttribute="centerX" id="0Q4-GF-sTa"/>
                             <constraint firstItem="aad-BQ-mRS" firstAttribute="leading" secondItem="gPU-E2-qiB" secondAttribute="leading" id="1mt-eo-Dw1"/>
                             <constraint firstItem="2qF-bR-Q5f" firstAttribute="trailing" secondItem="gPU-E2-qiB" secondAttribute="trailing" constant="20" id="5bh-iZ-UaZ"/>
+                            <constraint firstAttribute="bottom" secondItem="iWj-qP-4SO" secondAttribute="bottom" constant="238" id="6oO-1k-JGg"/>
                             <constraint firstItem="CTd-X3-9Xn" firstAttribute="width" secondItem="gPU-E2-qiB" secondAttribute="width" id="9OT-QL-6YB"/>
+                            <constraint firstItem="iWj-qP-4SO" firstAttribute="centerX" secondItem="gBg-7e-oYo" secondAttribute="centerX" id="Bog-2Q-Oov"/>
                             <constraint firstItem="WYU-Ye-kLC" firstAttribute="top" secondItem="2qF-bR-Q5f" secondAttribute="top" constant="120" id="CUN-VG-oA3"/>
                             <constraint firstItem="gPU-E2-qiB" firstAttribute="leading" secondItem="TJH-jA-LzW" secondAttribute="leading" id="GvL-7x-TKD"/>
                             <constraint firstItem="CTd-X3-9Xn" firstAttribute="leading" secondItem="aad-BQ-mRS" secondAttribute="leading" id="JOx-rn-Yif"/>
+                            <constraint firstItem="iWj-qP-4SO" firstAttribute="centerX" secondItem="GzJ-XS-NaJ" secondAttribute="centerX" id="JZi-SV-hDI"/>
                             <constraint firstItem="CTd-X3-9Xn" firstAttribute="top" secondItem="aad-BQ-mRS" secondAttribute="bottom" constant="2" id="Uqs-Qm-ljN"/>
                             <constraint firstItem="2qF-bR-Q5f" firstAttribute="bottom" secondItem="GLU-cT-pW4" secondAttribute="bottom" id="amQ-GW-chc"/>
                             <constraint firstItem="GLU-cT-pW4" firstAttribute="centerX" secondItem="jjO-Vp-pfp" secondAttribute="centerX" id="b58-pS-EwH"/>
                             <constraint firstItem="gPU-E2-qiB" firstAttribute="top" secondItem="TJH-jA-LzW" secondAttribute="bottom" constant="2" id="cwC-oj-ikB"/>
                             <constraint firstItem="aad-BQ-mRS" firstAttribute="top" secondItem="gPU-E2-qiB" secondAttribute="bottom" constant="22" id="dVS-Oh-VC0"/>
                             <constraint firstItem="TJH-jA-LzW" firstAttribute="top" secondItem="WYU-Ye-kLC" secondAttribute="bottom" constant="64" id="l7e-yO-0RH"/>
+                            <constraint firstItem="iWj-qP-4SO" firstAttribute="top" secondItem="GzJ-XS-NaJ" secondAttribute="bottom" constant="21" id="mdD-In-XnQ"/>
                             <constraint firstItem="gBg-7e-oYo" firstAttribute="top" secondItem="CTd-X3-9Xn" secondAttribute="bottom" constant="20" id="oGE-eg-VlS"/>
                             <constraint firstItem="gPU-E2-qiB" firstAttribute="leading" secondItem="2qF-bR-Q5f" secondAttribute="leading" constant="20" id="uOc-Rp-Vs7"/>
                             <constraint firstItem="WYU-Ye-kLC" firstAttribute="centerX" secondItem="jjO-Vp-pfp" secondAttribute="centerX" id="wUa-zI-rCi"/>
+                            <constraint firstItem="iWj-qP-4SO" firstAttribute="leading" secondItem="2qF-bR-Q5f" secondAttribute="leading" id="zdj-8l-Dv6"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="e8U-K9-lZX" appends="YES" id="x7q-aW-Qxr"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="authsLabel" destination="iWj-qP-4SO" id="eG4-VD-41l"/>
                         <outlet property="passwordField" destination="CTd-X3-9Xn" id="yeq-he-zzJ"/>
                         <outlet property="passwordLabel" destination="aad-BQ-mRS" id="wah-3S-mRL"/>
                         <outlet property="userNameField" destination="gPU-E2-qiB" id="Ijv-bJ-D9h"/>
